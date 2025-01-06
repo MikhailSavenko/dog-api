@@ -1,3 +1,9 @@
 .venv
 venv
 .env
+migrations
+migrations/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
