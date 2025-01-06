@@ -1,26 +1,24 @@
 from django.db import models
 from dog_api.breed.models import Breed
-from django.core.validators import MinValueValidator, MaxValueValidator
+from dog_api.api.fields import PositiveIntegerFieldFromXToY
 
 
 class Dog(models.Model):
     """
-    Represents a dog with attributes like name, age, breed, gender, color and preferences.
+    Представляет собаку с такими аттрибутами, как имя, возраст, порода, пол, цвет и предпочтения.
 
-    Attributes:
-        name (str): The name of the dog, with a maximum length of 150 characters.
-        age (int): The age of the dog, a positive integer between 1 and 30 (inclusive).
-        breed (Breed): The breed of the dog, linked to the Breed model.
-        gender (str): The gender of the dog, with a maximum length of 150 characters.
-        color (str): The color of the dog, with a maximum length of 200 characters.
-        favorite_food (str): The dog's favorite food, with a maximum length of 250 characters.
-        favorite_toy (str): The dog's favorite toy, with a maximum length of 250 characters.
+    Атрибуты:
+        name (str): Имя собаки, максимальная длина 150 символов.
+        age (int): Возраст собаки, положительное целое число от 1 до 30 (включительно).
+        breed (Breed): Порода собаки, связана с моделью Breed.
+        gender (str): Пол собаки, максимальная длина 150 символов.
+        color (str): Цвет собаки, максимальная длина 200 символов.
+        favorite_food (str): Любимая еда собаки, максимальная длина 250 символов.
+        favorite_toy (str): Любимая игрушка собаки, максимальная длина 250 символов.
     """
+
     name = models.CharField(max_length=150)
-    age = models.PositiveIntegerField(validators=[
-        MinValueValidator(1),
-        MaxValueValidator(30)
-    ])
+    age = PositiveIntegerFieldFromXToY(x=1, y=30)
     breed = models.ForeignKey(Breed, on_delete=models.CASCADE)
     gender = models.CharField(max_length=150)
     color = models.CharField(max_length=200)
