@@ -1,5 +1,5 @@
 from django.db import models
-from dog_api.api.fields import PositiveIntegerFieldFromXToY
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Breed(models.Model):
@@ -26,7 +26,15 @@ class Breed(models.Model):
     
     name = models.CharField(max_length=200)
     size = models.CharField(choices=SizeChoices.choices, max_length=6, default=SizeChoices.MEDIUM)
-    friendliness = PositiveIntegerFieldFromXToY(x=1, y=5)
-    trainability = PositiveIntegerFieldFromXToY(x=1, y=5)
-    shedding_amount = PositiveIntegerFieldFromXToY(x=1, y=5)
-    exercise_needs = PositiveIntegerFieldFromXToY(x=1, y=5)
+    friendliness = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
+    trainability = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
+    shedding_amount = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
+    exercise_needs = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )

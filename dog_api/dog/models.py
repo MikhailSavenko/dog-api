@@ -1,6 +1,6 @@
 from django.db import models
-from dog_api.breed.models import Breed
-from dog_api.api.fields import PositiveIntegerFieldFromXToY
+from breed.models import Breed
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Dog(models.Model):
@@ -18,7 +18,10 @@ class Dog(models.Model):
     """
 
     name = models.CharField(max_length=150)
-    age = PositiveIntegerFieldFromXToY(x=1, y=30)
+    age = models.PositiveIntegerField(validators=[
+        MinValueValidator(1),
+        MaxValueValidator(30)
+    ])
     breed = models.ForeignKey(Breed, on_delete=models.CASCADE)
     gender = models.CharField(max_length=150)
     color = models.CharField(max_length=200)
