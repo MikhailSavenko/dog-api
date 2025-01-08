@@ -2,14 +2,31 @@ from rest_framework import viewsets
 from dog.models import Dog
 from breed.models import Breed
 from api.serializers import DogSerializer, BreedSerializer
+from dog.managers import DogQuerySet
+from breed.managers import BreedQuerySet
 
 
-class DogViewSet(viewsets.ModelViewSet): 
+class DogViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet для модели Dog. Этот ViewSet предоставляет стандартные действия CRUD 
+    для управления собаками.
+
+    Доступные HTTP-методы:
+        - GET: Получить список собак или конкретную собаку по ID.
+        - POST: Создать новую собаку.
+        - PUT: Обновить данные существующей собаки.
+        - DELETE: Удалить собаку.
+
+    Методы:
+        get_queryset: Возвращает queryset собак, с дополнительными аннотациями в зависимости от действия.
+            - Для списка собак (`list`) добавляется аннотация `breed_average_age` для расчёта среднего возраста собак той же породы.
+            - Для получения одной собаки (`retrieve`) добавляется аннотация `same_breed_count` для подсчёта количества собак той же породы.
+    """
     serializer_class = DogSerializer
     http_method_names = ["get", "post", "put", "delete"]
 
     def get_queryset(self):
-        queryset = Dog.objects.select_related("breed")
+        queryset: DogQuerySet = Dog.objects.select_related("breed")
 
         if self.action == "list":
             return queryset.with_breed_average_age()
@@ -20,12 +37,26 @@ class DogViewSet(viewsets.ModelViewSet):
         return queryset
 
 
-class BreedViewSet(viewsets.ModelViewSet): 
+class BreedViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet для модели Breed. Этот ViewSet предоставляет стандартные действия CRUD 
+    для управления породами собак.
+
+    Доступные HTTP-методы:
+        - GET: Получить список пород или конкретную породу по ID.
+        - POST: Создать новую породу.
+        - PUT: Обновить данные существующей породы.
+        - DELETE: Удалить породу.
+
+    Методы:
+        get_queryset: Возвращает queryset пород, с дополнительными аннотациями для списка пород.
+            - Для списка пород (`list`) добавляется аннотация `count_dogs` для подсчёта количества собак каждой породы.
+    """
     serializer_class = BreedSerializer
     http_method_names = ["get", "post", "put", "delete"]
 
     def get_queryset(self):
-        queryset = Breed.objects.all()
+        queryset: BreedQuerySet = Breed.objects.all()
 
         if self.action == 'list':
             return queryset.with_count_dogs()

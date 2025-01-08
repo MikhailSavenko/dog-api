@@ -3,12 +3,29 @@ from django.db.models import OuterRef, Avg, Subquery, Count
 
 
 class DogQuerySet(models.QuerySet):
+    """
+    Пользовательский QuerySet для модели Dog с дополнительными аннотациями.
+    """
     def with_breed_average_age(self) -> models.QuerySet:
+        """
+        Аннотирует каждую запись собаки средним возрастом собак той же породы.
+
+        Returns:
+            models.QuerySet: QuerySet с аннотацией 'avg_age_breed', представляющей
+            средний возраст собак для каждой породы.
+        """
         sub = self.filter(breed=OuterRef("breed")).values("breed").annotate(avg_age=Avg("age")).values("avg_age")
         query = self.annotate(avg_age_breed=Subquery(sub))
         return query
 
-    def with_same_breed_count(self):
+    def with_same_breed_count(self) -> models.QuerySet:
+        """
+        Аннотирует каждую запись собаки количеством собак той же породы.
+
+        Returns:
+            models.QuerySet: QuerySet с аннотацией 'count_dog', представляющей
+            количество собак для каждой породы.
+        """
         sub = self.filter(breed=OuterRef("breed")).values("breed").annotate(count_dog=Count("id")).values("count_dog")
         query = self.annotate(count_dog=Subquery(sub))
         return query
