@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from .managers import BreedQuerySet
 
 
 class Breed(models.Model):
@@ -38,3 +39,5 @@ class Breed(models.Model):
     exercise_needs = models.PositiveIntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
+
+    objects = BreedQuerySet.as_manager()
