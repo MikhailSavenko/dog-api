@@ -13,6 +13,8 @@ class DogSerializer(serializers.ModelSerializer):
 
 
 class BreedSerializer(serializers.ModelSerializer):
+    count_dogs = serializers.IntegerField(read_only=True)
+    
     class Meta:
         model = Breed
         fields = '__all__'

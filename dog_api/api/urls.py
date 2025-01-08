@@ -7,7 +7,7 @@ from api.views import DogViewSet, BreedViewSet
 router = DefaultRouter()
 
 router.register(r"dogs", DogViewSet, basename="dog")
-router.register(r"breeds", BreedViewSet)
+router.register(r"breeds", BreedViewSet, basename="breed")
 
 
 urlpatterns = [

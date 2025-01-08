@@ -21,6 +21,13 @@ class DogViewSet(viewsets.ModelViewSet):
 
 
 class BreedViewSet(viewsets.ModelViewSet): 
-    queryset = Breed.objects.all()
     serializer_class = BreedSerializer
     http_method_names = ["get", "post", "put", "delete"]
+
+    def get_queryset(self):
+        queryset = Breed.objects.all()
+
+        if self.action == 'list':
+            return queryset.with_count_dogs()
+        
+        return queryset
