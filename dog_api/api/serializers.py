@@ -1,6 +1,7 @@
 from rest_framework import serializers
-from dog.models import Dog
+
 from breed.models import Breed
+from dog.models import Dog
 
 
 class DogSerializer(serializers.ModelSerializer):

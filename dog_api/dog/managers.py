@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import OuterRef, Avg, Subquery, Count
+from django.db.models import Avg, Count, OuterRef, Subquery
 
 
 class DogQuerySet(models.QuerySet):

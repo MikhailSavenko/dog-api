@@ -1,9 +1,10 @@
 from rest_framework import viewsets
-from dog.models import Dog
-from breed.models import Breed
-from api.serializers import DogSerializer, BreedSerializer
-from dog.managers import DogQuerySet
+
+from api.serializers import BreedSerializer, DogSerializer
 from breed.managers import BreedQuerySet
+from breed.models import Breed
+from dog.managers import DogQuerySet
+from dog.models import Dog
 
 
 class DogViewSet(viewsets.ModelViewSet):
