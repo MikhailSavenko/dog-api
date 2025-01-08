@@ -6,7 +6,7 @@ from api.views import DogViewSet, BreedViewSet
 
 router = DefaultRouter()
 
-router.register(r"dogs", DogViewSet)
+router.register(r"dogs", DogViewSet, basename="dog")
 router.register(r"breed", BreedViewSet)
 
 
