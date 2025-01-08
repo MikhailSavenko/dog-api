@@ -1,6 +1,7 @@
 from django.db import models
 from breed.models import Breed
 from django.core.validators import MinValueValidator, MaxValueValidator
+from .managers import DogQuerySet
 
 
 class Dog(models.Model):
@@ -28,3 +29,4 @@ class Dog(models.Model):
     favorite_food = models.CharField(max_length=250)
     favorite_toy = models.CharField(max_length=250)
 
+    objects = DogQuerySet.as_manager()
