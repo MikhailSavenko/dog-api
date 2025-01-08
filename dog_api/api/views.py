@@ -9,7 +9,7 @@ from dog.models import Dog
 
 class DogViewSet(viewsets.ModelViewSet):
     """
-    ViewSet для модели Dog. Этот ViewSet предоставляет стандартные действия CRUD 
+    ViewSet для модели Dog. Этот ViewSet предоставляет стандартные действия CRUD
     для управления собаками.
 
     Доступные HTTP-методы:
@@ -23,6 +23,7 @@ class DogViewSet(viewsets.ModelViewSet):
             - Для списка собак (`list`) добавляется аннотация `breed_average_age` для расчёта среднего возраста собак той же породы.
             - Для получения одной собаки (`retrieve`) добавляется аннотация `same_breed_count` для подсчёта количества собак той же породы.
     """
+
     serializer_class = DogSerializer
     http_method_names = ["get", "post", "put", "delete"]
 
@@ -31,16 +32,16 @@ class DogViewSet(viewsets.ModelViewSet):
 
         if self.action == "list":
             return queryset.with_breed_average_age()
-        
-        elif self.action == 'retrieve':
+
+        elif self.action == "retrieve":
             return queryset.with_same_breed_count()
-        
+
         return queryset
 
 
 class BreedViewSet(viewsets.ModelViewSet):
     """
-    ViewSet для модели Breed. Этот ViewSet предоставляет стандартные действия CRUD 
+    ViewSet для модели Breed. Этот ViewSet предоставляет стандартные действия CRUD
     для управления породами собак.
 
     Доступные HTTP-методы:
@@ -53,13 +54,14 @@ class BreedViewSet(viewsets.ModelViewSet):
         get_queryset: Возвращает queryset пород, с дополнительными аннотациями для списка пород.
             - Для списка пород (`list`) добавляется аннотация `count_dogs` для подсчёта количества собак каждой породы.
     """
+
     serializer_class = BreedSerializer
     http_method_names = ["get", "post", "put", "delete"]
 
     def get_queryset(self):
         queryset: BreedQuerySet = Breed.objects.all()
 
-        if self.action == 'list':
+        if self.action == "list":
             return queryset.with_count_dogs()
-        
+
         return queryset

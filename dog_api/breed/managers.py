@@ -6,6 +6,7 @@ class BreedQuerySet(models.QuerySet):
     """
     Пользовательский QuerySet для модели Breed с дополнительными аннотациями.
     """
+
     def with_count_dogs(self):
         """
         Аннотирует каждую запись породы количеством собак, принадлежащих к этой породе.
@@ -14,5 +15,5 @@ class BreedQuerySet(models.QuerySet):
             models.QuerySet: QuerySet с аннотацией 'count_dogs', представляющей
             количество собак для каждой породы.
         """
-        query = self.annotate(count_dogs=Count('dog'))
+        query = self.annotate(count_dogs=Count("dog"))
         return query

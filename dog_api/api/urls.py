@@ -10,6 +10,4 @@ router.register(r"dogs", DogViewSet, basename="dog")
 router.register(r"breeds", BreedViewSet, basename="breed")
 
 
-urlpatterns = [
-    path("", include(router.urls))
-]
+urlpatterns = [path("", include(router.urls))]

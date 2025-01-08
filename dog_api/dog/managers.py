@@ -6,6 +6,7 @@ class DogQuerySet(models.QuerySet):
     """
     Пользовательский QuerySet для модели Dog с дополнительными аннотациями.
     """
+
     def with_breed_average_age(self) -> models.QuerySet:
         """
         Аннотирует каждую запись собаки средним возрастом собак той же породы.
