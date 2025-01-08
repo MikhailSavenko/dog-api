@@ -1,0 +1,192 @@
+[
+    {
+        "model": "breed.breed",
+        "pk": 1,
+        "fields": {
+            "name": "Golden Retriever",
+            "size": "Large",
+            "friendliness": 5,
+            "trainability": 5,
+            "shedding_amount": 4,
+            "exercise_needs": 5
+        }
+    },
+    {
+        "model": "breed.breed",
+        "pk": 2,
+        "fields": {
+            "name": "Pug",
+            "size": "Small",
+            "friendliness": 4,
+            "trainability": 3,
+            "shedding_amount": 3,
+            "exercise_needs": 2
+        }
+    },
+    {
+        "model": "breed.breed",
+        "pk": 3,
+        "fields": {
+            "name": "German Shepherd",
+            "size": "Large",
+            "friendliness": 4,
+            "trainability": 5,
+            "shedding_amount": 5,
+            "exercise_needs": 5
+        }
+    },
+    {
+        "model": "breed.breed",
+        "pk": 4,
+        "fields": {
+            "name": "Chihuahua",
+            "size": "Tiny",
+            "friendliness": 3,
+            "trainability": 2,
+            "shedding_amount": 2,
+            "exercise_needs": 1
+        }
+    },
+    {
+        "model": "breed.breed",
+        "pk": 5,
+        "fields": {
+            "name": "Bulldog",
+            "size": "Medium",
+            "friendliness": 4,
+            "trainability": 3,
+            "shedding_amount": 3,
+            "exercise_needs": 2
+        }
+    },
+    {
+        "model": "dog.dog",
+        "pk": 1,
+        "fields": {
+            "name": "Buddy",
+            "age": 3,
+            "breed": 1,
+            "gender": "Male",
+            "color": "Golden",
+            "favorite_food": "Chicken",
+            "favorite_toy": "Tennis Ball"
+        }
+    },
+    {
+        "model": "dog.dog",
+        "pk": 2,
+        "fields": {
+            "name": "Bella",
+            "age": 2,
+            "breed": 2,
+            "gender": "Female",
+            "color": "Fawn",
+            "favorite_food": "Beef",
+            "favorite_toy": "Rubber Bone"
+        }
+    },
+    {
+        "model": "dog.dog",
+        "pk": 3,
+        "fields": {
+            "name": "Max",
+            "age": 4,
+            "breed": 3,
+            "gender": "Male",
+            "color": "Black and Tan",
+            "favorite_food": "Lamb",
+            "favorite_toy": "Frisbee"
+        }
+    },
+    {
+        "model": "dog.dog",
+        "pk": 4,
+        "fields": {
+            "name": "Lucy",
+            "age": 1,
+            "breed": 4,
+            "gender": "Female",
+            "color": "White",
+            "favorite_food": "Fish",
+            "favorite_toy": "Squeaky Toy"
+        }
+    },
+    {
+        "model": "dog.dog",
+        "pk": 5,
+        "fields": {
+            "name": "Charlie",
+            "age": 5,
+            "breed": 5,
+            "gender": "Male",
+            "color": "Brindle",
+            "favorite_food": "Turkey",
+            "favorite_toy": "Rope Toy"
+        }
+    },
+    {
+        "model": "dog.dog",
+        "pk": 6,
+        "fields": {
+            "name": "Daisy",
+            "age": 3,
+            "breed": 1,
+            "gender": "Female",
+            "color": "Golden",
+            "favorite_food": "Duck",
+            "favorite_toy": "Ball"
+        }
+    },
+    {
+        "model": "dog.dog",
+        "pk": 7,
+        "fields": {
+            "name": "Rocky",
+            "age": 2,
+            "breed": 2,
+            "gender": "Male",
+            "color": "Fawn",
+            "favorite_food": "Salmon",
+            "favorite_toy": "Chew Toy"
+        }
+    },
+    {
+        "model": "dog.dog",
+        "pk": 8,
+        "fields": {
+            "name": "Molly",
+            "age": 4,
+            "breed": 3,
+            "gender": "Female",
+            "color": "Black",
+            "favorite_food": "Beef Jerky",
+            "favorite_toy": "Stuffed Animal"
+        }
+    },
+    {
+        "model": "dog.dog",
+        "pk": 9,
+        "fields": {
+            "name": "Oscar",
+            "age": 1,
+            "breed": 4,
+            "gender": "Male",
+            "color": "Brown",
+            "favorite_food": "Pork",
+            "favorite_toy": "Stick"
+        }
+    },
+    {
+        "model": "dog.dog",
+        "pk": 10,
+        "fields": {
+            "name": "Zoe",
+            "age": 2,
+            "breed": 5,
+            "gender": "Female",
+            "color": "Gray",
+            "favorite_food": "Rabbit",
+            "favorite_toy": "Tug Rope"
+        }
+    }
+]
