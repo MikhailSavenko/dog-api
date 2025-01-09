@@ -6,13 +6,13 @@
 
 ## Содержание
 
-  * [Описание](https://www.google.com/url?sa=E&source=gmail&q=#описание)
-  * [Технологии](https://www.google.com/url?sa=E&source=gmail&q=#технологии)
-  * [Установка](https://www.google.com/url?sa=E&source=gmail&q=#установка)
-  * [Запуск](https://www.google.com/url?sa=E&source=gmail&q=#запуск)
-  * [Использование API](https://www.google.com/url?sa=E&source=gmail&q=#использование-api)
-  * [Модели данных](https://www.google.com/url?sa=E&source=gmail&q=#модели-данных)
-  * [Оптимизация запросов](https://www.google.com/url?sa=E&source=gmail&q=#оптимизация-запросов)
+  * [Описание](https://github.com/MikhailSavenko/dog-api/tree/main?tab=readme-ov-file=#описание)
+  * [Технологии](https://github.com/MikhailSavenko/dog-api/tree/main?tab=readme-ov-file=#технологии)
+  * [Установка](https://github.com/MikhailSavenko/dog-api/tree/main?tab=readme-ov-file=#установка)
+  * [Запуск](https://github.com/MikhailSavenko/dog-api/tree/main?tab=readme-ov-file=#запуск)
+  * [Использование API](https://github.com/MikhailSavenko/dog-api/tree/main?tab=readme-ov-file=#использование-api)
+  * [Модели данных](https://github.com/MikhailSavenko/dog-api/tree/main?tab=readme-ov-file=#модели-данных)
+  * [Оптимизация запросов](https://github.com/MikhailSavenko/dog-api/tree/main?tab=readme-ov-file=#оптимизация-запросов)
 
 
 ## Описание
@@ -37,7 +37,7 @@ API предоставляет возможность создавать, пол
     git clone git@github.com:MikhailSavenko/dog-api.git
     ```
 
-2.  Создайте файл `.env` на основе `env.example` и заполните необходимые переменные окружения (подробнее в разделе [Переменные окружения](https://www.google.com/url?sa=E&source=gmail&q=#переменные-окружения)):
+2.  Создайте файл `.env` на основе `env.example` и заполните необходимые переменные окружения
 
     ```bash
     cp env.example .env
@@ -87,7 +87,7 @@ API предоставляет возможность создавать, пол
 *   **Получение информации о конкретной собаке (GET /api/dogs/<id>):**
 
     ```bash
-    curl http://localhost:8000/api/dogs/1/ # Замените 1 на ID нужной собаки
+    curl http://localhost:8000/api/dogs/1/ 
     ```
 
     Этот запрос вернет JSON-ответ с информацией о собаке с указанным ID и количеством собак той же породы.
@@ -106,15 +106,18 @@ API предоставляет возможность создавать, пол
     }' http://localhost:8000/api/dogs/
     ```
 
-    Убедитесь, что ID породы (`breed`) существует в базе данных.
-
 *   **Обновление информации о собаке (PUT /api/dogs/<id>):**
 
     ```bash
     curl -X PUT -H "Content-Type: application/json" -d '{
         "name": "Buddy Updated",
-        "age": 4
-    }' http://localhost:8000/api/dogs/1/ # Замените 1 на ID нужной собаки
+        "age": 4,
+        "breed": 1,
+        "gender": "Male",
+        "color": "Brown",
+        "favorite_food": "Meat",
+        "favorite_toy": "Ball"
+    }' http://localhost:8000/api/dogs/1/
     ```
 
     Этот запрос обновит имя и возраст собаки с ID 1.
@@ -122,7 +125,7 @@ API предоставляет возможность создавать, пол
 *   **Удаление собаки (DELETE /api/dogs/<id>):**
 
     ```bash
-    curl -X DELETE http://localhost:8000/api/dogs/1/ # Замените 1 на ID нужной собаки
+    curl -X DELETE http://localhost:8000/api/dogs/1/
     ```
 
     Этот запрос удалит собаку с ID 1.
@@ -140,7 +143,7 @@ API предоставляет возможность создавать, пол
 *   **Получение информации о конкретной породе (GET /api/breeds/<id>):**
 
     ```bash
-    curl http://localhost:8000/api/breeds/1/ # Замените 1 на ID нужной породы
+    curl http://localhost:8000/api/breeds/1/
     ```
 
     Этот запрос вернет JSON-ответ с информацией о породе с указанным ID.
@@ -162,16 +165,19 @@ API предоставляет возможность создавать, пол
 
     ```bash
     curl -X PUT -H "Content-Type: application/json" -d '{
-        "trainability": 5
-    }' http://localhost:8000/api/breeds/1/ # Замените 1 на ID нужной породы
+        "name": "Golden Retriever",
+        "size": "Medium",
+        "friendliness": 5,
+        "trainability": 5,
+        "shedding_amount": 3,
+        "exercise_needs": 4
+    }' http://localhost:8000/api/breeds/6/
     ```
-
-    Этот запрос обновит уровень обучаемости породы с ID 1.
 
 *   **Удаление породы (DELETE /api/breeds/<id>):**
 
     ```bash
-    curl -X DELETE http://localhost:8000/api/breeds/1/ # Замените 1 на ID нужной породы
+    curl -X DELETE http://localhost:8000/api/breeds/1/
     ```
 
     Этот запрос удалит породу с ID 1.
@@ -184,14 +190,19 @@ API предоставляет возможность создавать, пол
     curl http://localhost:8000/api/dogs/999/ # Предположим, ID 999 не существует
     ```
 
-    Ожидается ответ со статусом `404 Not Found`.
+    Ожидается ответ со статусом `404 Not Found`. ("detail": "No Dog matches the given query.")
 
 *   **Некорректные данные при создании (POST /api/dogs/):**
 
     ```bash
     curl -X POST -H "Content-Type: application/json" -d '{
-        "name": "", # Пустое имя
-        "age": "abc" # Некорректный тип данных
+        "name": "", # пустое поле
+        "age": "abc", # некорректный тип данных
+        "breed": 1, # если порода удалена pk - невалидный
+        "gender": "Male",
+        "color": "Brown",
+        "favorite_food": "Meat",
+        "favorite_toy": "Ball"
     }' http://localhost:8000/api/dogs/
     ```
 
